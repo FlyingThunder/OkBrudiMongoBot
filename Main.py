@@ -21,15 +21,10 @@ def Mainbot():
         os.remove("local-filename.jpg")
 
 
-    sub = reddit.subreddit('okbrudimongo').new(limit=1000)
-    random_post_number = random.randint(0,1000)
-
-
-    for i,post in enumerate(sub):
-        if i==random_post_number:
-            urllib.request.urlretrieve(post.url, "local-filename.jpg")
-            Tweet(postinfo=post.title+"(https://www.reddit.com" + post.permalink+")")
+    post = reddit.subreddit('okbrudimongo').random()
+    urllib.request.urlretrieve(post.url, "local-filename.jpg")
+    Tweet(postinfo=post.title+"(https://www.reddit.com" + post.permalink+")")
 
 while True:
     Mainbot()
-    time.sleep(3600)
+    time.sleep(600)
